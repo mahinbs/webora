@@ -1,9 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  getAllPortfolioItems,
-  getPortfolioByCategory,
-} from "../data/portfolioData";
+import { getPortfolioByCategory } from "../data/portfolioData";
 import {
   FiMonitor,
   FiSmartphone,
@@ -98,8 +95,6 @@ const getLiveProjectLink = (project) => {
 const PortfolioPage = () => {
   const [activeCategory, setActiveCategory] = useState(null);
   const detailSectionRef = useRef(null);
-
-  const heroProjects = useMemo(() => getAllPortfolioItems().slice(0, 6), []);
 
   const serviceCategories = useMemo(
     () =>
