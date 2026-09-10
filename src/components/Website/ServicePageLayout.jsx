@@ -7,6 +7,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 import Footer from "./Footer";
 import { BsClock } from "react-icons/bs";
 import GetInTouch from "../GetInTouch";
+import { trackContact } from "../../lib/metaPixel";
 
 const ServicePageLayout = () => {
   const { pathname } = useLocation();
@@ -48,7 +49,11 @@ const ServicePageLayout = () => {
                 <FaPhoneAlt className="text-3xl" />
               </div>
               <h4 className="text-2xl font-medium">Need Help? Call Here</h4>
-              <Link to={`tel:${clientDetails.phone}`} className="font-semibold">
+              <Link
+                to={`tel:${clientDetails.phone}`}
+                onClick={() => trackContact({ content_name: "phone_call" })}
+                className="font-semibold"
+              >
                 {phoneDisplay}
               </Link>
             </div>
@@ -109,7 +114,11 @@ const ServicePageLayout = () => {
               <FaPhoneAlt className="text-3xl" />
             </div>
             <h4 className="text-xl font-semibold">Need Help? Call Here</h4>
-            <Link to={`tel:${clientDetails.phone}`} className="font-semibold">
+            <Link
+              to={`tel:${clientDetails.phone}`}
+              onClick={() => trackContact({ content_name: "phone_call" })}
+              className="font-semibold"
+            >
               {phoneDisplay}
             </Link>
           </div>

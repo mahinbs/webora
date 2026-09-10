@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { allServices, clientDetails } from "../constants";
 import { BiCaretRight } from "react-icons/bi";
 import { SpinnerContext } from "./SpinnerContext";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { trackLead } from "../lib/metaPixel";
 
 const GetInTouch = () => {
   return (
@@ -97,6 +99,7 @@ export const InquiryForm = () => {
           toast.error(res.error);
         } else {
           toast.success("Your message has been sent successfully!");
+          trackLead({ content_name: "contact_form" });
           reset();
           // navigate("/thank-you");
         }
@@ -257,6 +260,13 @@ export const InquiryForm = () => {
           >
             Send Message
           </button>
+          <p className="text-xs text-white/80 mt-1">
+            By submitting this form you agree to our{" "}
+            <Link to="/privacy-policy" className="underline underline-offset-2">
+              Privacy Policy
+            </Link>
+            .
+          </p>
         </form>
       </div>
     </div>

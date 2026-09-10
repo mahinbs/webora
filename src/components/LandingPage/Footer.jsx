@@ -4,6 +4,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
 import { GrFacebookOption } from "react-icons/gr";
 import { clientDetails, logo } from "../../constants";
+import { trackContact } from "../../lib/metaPixel";
 
 const Footer = () => {
   const phoneDisplay = clientDetails.phoneDisplay ?? clientDetails.phone;
@@ -24,7 +25,11 @@ const Footer = () => {
             <Link to={`mailto:${clientDetails.email}`} className="">
               {clientDetails.email}
             </Link>
-            <Link to={`tel:${clientDetails.phone}`} className="">
+            <Link
+              to={`tel:${clientDetails.phone}`}
+              onClick={() => trackContact({ content_name: "phone_call" })}
+              className=""
+            >
               {phoneDisplay}
             </Link>
             <p className="text-white/80 leading-relaxed">
@@ -38,6 +43,14 @@ const Footer = () => {
             >
               View on Google Maps
             </a>
+            <div className="flex gap-4 pt-1 text-sm text-white/80">
+              <Link to="/privacy-policy" className="underline underline-offset-2">
+                Privacy Policy
+              </Link>
+              <Link to="/terms" className="underline underline-offset-2">
+                Terms &amp; Conditions
+              </Link>
+            </div>
           </div>
         </div>
         <div className="flex flex-col gap-5">

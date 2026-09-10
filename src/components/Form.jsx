@@ -2,10 +2,12 @@
 // import { BiCaretRight } from "react-icons/bi";
 
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { SpinnerContext } from "./SpinnerContext";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { clientDetails } from "../constants";
+import { trackLead } from "../lib/metaPixel";
 
 const Form = () => {
   const { setSpinner } = useContext(SpinnerContext);
@@ -75,6 +77,7 @@ const Form = () => {
           toast.error(res.error);
         } else {
           toast.success("Your message has been sent successfully!");
+          trackLead({ content_name: "contact_form" });
           reset();
         //   navigate("/thank-you");
         }
@@ -232,6 +235,16 @@ const Form = () => {
           >
             Send Message
           </button>
+          <p className="text-xs text-gray-500 mt-1">
+            By submitting this form you agree to our{" "}
+            <Link
+              to="/privacy-policy"
+              className="text-primary underline underline-offset-2"
+            >
+              Privacy Policy
+            </Link>
+            .
+          </p>
         </form>
       </div>
     </div>

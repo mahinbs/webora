@@ -7,6 +7,7 @@ import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import { FaMapLocationDot } from "react-icons/fa6";
 import banner from "../assets/contact-us-banner.webp";
 import { InquiryForm } from "../components/GetInTouch";
+import { trackContact } from "../lib/metaPixel";
 
 const PageBanner = lazy(() => import("../components/Website/PageBanner"));
 
@@ -50,6 +51,7 @@ const ContactUs = () => {
             <hr />
             <a
               href={`tel:${clientDetails.phone}`}
+              onClick={() => trackContact({ content_name: "phone_call" })}
               className="flex items-center gap-3 my-7 w-fit"
             >
               <div className="w-[3.5rem] h-[3.5rem] bg-background/20 rounded-full p-3 flex justify-center items-center">
